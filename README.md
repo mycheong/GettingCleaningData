@@ -24,8 +24,8 @@ Write an R script called run_analysis.R that does the following:-
 - y_train.txt
 [Note : Some of these files might be originally stored in sub-directories. Move them to the directory given to the working directory.]
 3. Then source run_analysis.R
-4. Run the function by typing this in your R console, for example : X_merged <- run_analysis() [The function does not need input argument]
-5. The function returns the merged training and test dataset as data frame X_merged 
+4. Run the function by typing this in your R console, for example : X_tidy <- run_analysis() [The function does not need input argument]
+5. The function returns the tidy dataset X_tidy 
 
 
 (B) run_analysis() performs the following tasks:-
@@ -40,6 +40,6 @@ Write an R script called run_analysis.R that does the following:-
 9. Reaarrage the dataframe X_ms by melting it into id variables (subject ids and activity names) and measures variables (all columns containing measurement)
 10. Re-cast the melted data frame to form the tidy dataset X_tidy, where the subject_id and activity forms the row and the average of the measurements are in the columns  
 11. Rename the columns of X_tidy by adding a prefix "Avg" to indicate the values in the columns are the average over the given subject and activity
-12. The function returns the merged training and test dataset, X_merged
+12. The function returns the tidy dataset, X_tidy
 
  

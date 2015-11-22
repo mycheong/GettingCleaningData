@@ -16,7 +16,7 @@ B) Measurement extracted for the tidy dataset from the original measurement data
 The mean [mean()] and standard deviation [std()] of the following measurements were extracted from the original datasets. 
 tBodyAcc-XYZ		(ms^(-2))
 tGravityAcc-XYZ		(ms^(-2))
-tBodyAccJerk-XYZ	(ms^(-2))
+tBodyAccJerk-XYZ	(ms^(-1))
 tBodyGyro-XYZ		(radian/s)
 tBodyGyroJerk-XYZ	(radian/s)
 tBodyAccMag		( )
@@ -24,8 +24,8 @@ tGravityAccMag		( )
 tBodyAccJerkMag		( )
 tBodyGyroMag		( )
 tBodyGyroJerkMag	( )
-fBodyAcc-XYZ		(ms^(-2))
-fBodyAccJerk-XYZ 	(ms^(-2))
+fBodyAcc-XYZ		(Hzs^(-2))
+fBodyAccJerk-XYZ 	(Hzs^(-1))
 fBodyGyro-XYZ		(radian/s)
 fBodyAccMag		( )
 fBodyAccJerkMag		( )
@@ -59,7 +59,7 @@ C) Procedure
 10. Re-cast the melted data frame X_melt to form the tidy dataset X_tidy, 
     where the subject_id and activity form the row and the average of the measurements are in the columns  
 11. Rename the columns of X_tidy by adding a prefix "Avg" to indicate the values in the columns are the average over the given subject and activity
-12. The function returns the merged dataset X_merged instead of tidy dataset X_tidy
+12. The function returns the tidy dataset X_tidy
 
 
 D) The merged dataset X_merged

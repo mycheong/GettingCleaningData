@@ -124,8 +124,8 @@ colnames(X_tidy) <- newNames
 
 
 ##
-## Returning the tidy dataset of merged training and test data
+## Returning the tidy dataset X_tidy
 ##
-return(X_merged)
+return(X_tidy)
 
 }
