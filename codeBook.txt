@@ -1,0 +1,111 @@
+CODE BOOK  of run_analysis.R
+
+A) Dataset
+The following datasets were used in producing the tidy dataset X_tidy :-
+- 'features.txt': List of all features.
+- 'activity_labels.txt': Links the class labels with their activity name.
+- 'subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+- 'subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+- 'X_train.txt': Training set.
+- 'y_train.txt': Training labels.
+- 'X_test.txt': Test set.
+- 'y_test.txt': Test labels.
+
+B) Measurement extracted for the tidy dataset from the original measurement datasets
+
+The mean [mean()] and standard deviation [std()] of the following measurements were extracted from the original datasets. 
+tBodyAcc-XYZ		(ms^(-2))
+tGravityAcc-XYZ		(ms^(-2))
+tBodyAccJerk-XYZ	(ms^(-2))
+tBodyGyro-XYZ		(radian/s)
+tBodyGyroJerk-XYZ	(radian/s)
+tBodyAccMag		( )
+tGravityAccMag		( )
+tBodyAccJerkMag		( )
+tBodyGyroMag		( )
+tBodyGyroJerkMag	( )
+fBodyAcc-XYZ		(ms^(-2))
+fBodyAccJerk-XYZ 	(ms^(-2))
+fBodyGyro-XYZ		(radian/s)
+fBodyAccMag		( )
+fBodyAccJerkMag		( )
+fBodyGyroMag		( )
+fBodyGyroJerkMag	( )
+
+- '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+- The column names of the extratced data are derived from features.txt. 
+  The mean and standard deviation measurement are denoted by 'mean()' and 'std()' at the end of the column names, respectively
+- The unit of the measurement are given in the ( ) next to them
+
+[The details of these signals are described in the readme.txt and feature_info.txt that come with the dataset]
+
+
+C) Procedure
+1. The above files are read into R as data frames. 
+2. The 2nd column of 'features' is used to form the column names of data frames X_test and X_train.
+   The column of y_test and y_train are named as "activ_label" to indicate activity label.
+   The column of subject_train and subject_test are named as "subject_id" 
+   The row names of the two dfs are made unique, preparing them for row binding.
+3. First  y_test and y_train are column bind to X_test and X_train, respectively.  
+4. Then, X_train and X_test are row bind together to form X_merged.
+5. Duplicated columns in X_merged (duplicates are identified by their column names only, not the data) are removed to get X_noDup.
+6. From X_noDup, only mean and std measurements are sifted out to form X_ms.
+7. A new column called "activ_name" is added to X_ms to record the activity name. The values are corresponding to each record's activity label. 
+   The activity label-to-name translation is given in 'act_label' data frame (read in from activity_label.txt)
+8. Modify the column names of X_ms to meaningful names. 
+   [I find that the original names given in features.txt are as descriptive and compact as possible. There are some typos, e.g. repititions like "BodyBody". Mostly, the modification of the names include deleting one of the repeated "Body" and replacing "-" with "_".]
+  
+9. Melt X_ms into id variables (subject ids and activity names) and measures variables (all columns containing measurement) to form X_melt
+10. Re-cast the melted data frame X_melt to form the tidy dataset X_tidy, 
+    where the subject_id and activity form the row and the average of the measurements are in the columns  
+11. Rename the columns of X_tidy by adding a prefix "Avg" to indicate the values in the columns are the average over the given subject and activity
+12. The tidy dataset X_tidy is returned
+
+
+
+D) The tidy dataset X_tidy
+The dimension of X_tidy is 180 rows and 68 columns.  
+
+The first two columns have the subject id and activity name, denoted by the following column names:-
+"subject_id"
+"activ_name"            
+
+Columns 3-68 contain the average value of the measurement. The column names are denoted in the following. 
+[Note : "..._XYZ" means three different variables of X, Y, Z axis.] 
+[Note : Column names list below is not in the exact order as in X_tidy]
+ 
+"Avg_tBodyAcc_mean()_XYZ"
+"Avg_tGravityAcc_mean()_XYZ"   
+"Avg_tBodyAccJerk_mean()_XYZ"
+"Avg_tBodyGyro_mean()_XYZ"     
+"Avg_tBodyGyroJerk_mean()_XYZ"
+"Avg_tBodyAcc_std()_XYZ"
+"Avg_tGravityAcc_std()_XYZ"
+"Avg_tBodyAccJerk_std()_XYZ"   
+"Avg_tBodyGyro_std()_XYZ"
+"Avg_tBodyGyroJerk_std()_XYZ"
+"Avg_tBodyAccMag_mean()"
+"Avg_tGravityAccMag_mean()"
+"Avg_tBodyAccJerkMag_mean()"
+"Avg_tBodyGyroMag_mean()"
+"Avg_tBodyGyroJerkMag_mean()"
+"Avg_tBodyAccMag_std()"
+"Avg_tGravityAccMag_std()"
+"Avg_tBodyAccJerkMag_std()"
+"Avg_tBodyGyroMag_std()"    
+"Avg_tBodyGyroJerkMag_std()"
+"Avg_fBodyAcc_mean()_XYZ"
+"Avg_fBodyAccJerk_mean()_XYZ"
+"Avg_fBodyGyro_mean()_XYZ"
+"Avg_fBodyAcc_std()_XYZ"       
+"Avg_fBodyAccJerk_std()_XYZ"
+"Avg_fBodyGyro_std()_XYZ"
+"Avg_fBodyAccMag_mean()"
+"Avg_fBodyAccJerkMag_mean()"
+"Avg_fBodyGyroMag_mean()"    
+"Avg_fBodyGyroJerkMag_mean()"
+"Avg_fBodyAccMag_std()"
+"Avg_fBodyAccJerkMag_std()"  
+"Avg_fBodyGyroMag_std()"
+"Avg_fBodyGyroJerkMag_std()"
+              
