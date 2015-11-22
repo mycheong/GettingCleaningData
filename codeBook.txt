@@ -59,11 +59,19 @@ C) Procedure
 10. Re-cast the melted data frame X_melt to form the tidy dataset X_tidy, 
     where the subject_id and activity form the row and the average of the measurements are in the columns  
 11. Rename the columns of X_tidy by adding a prefix "Avg" to indicate the values in the columns are the average over the given subject and activity
-12. The tidy dataset X_tidy is returned
+12. The function returns the merged dataset X_merged instead of tidy dataset X_tidy
+
+
+D) The merged dataset X_merged
+The dimension of X_merged is 10299 objects with 563 variables.
+
+Columns 1- 561 contain the measurements indicated in the features.txt (with repeated features removed).
+ Note : The measurement columns removed are chosen based only on the column names which are repeated.
+Columns 562 and 563 contain the subject ids and activity labels.
 
 
 
-D) The tidy dataset X_tidy
+E) The tidy dataset X_tidy
 The dimension of X_tidy is 180 rows and 68 columns.  
 
 The first two columns have the subject id and activity name, denoted by the following column names:-
